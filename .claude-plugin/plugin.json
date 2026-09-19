@@ -1,0 +1,23 @@
+{
+  "name": "ai-power-apps",
+  "version": "1.0.0",
+  "description": "Live search across web, research, books, music, YouTube, weather, routes, hotels, flights, GitHub and social, plus Sharpen second-opinion reviews, for Claude Code.",
+  "author": {
+    "name": "Small Tree",
+    "email": "support@powerups-ai.store",
+    "url": "https://powerups-ai.store"
+  },
+  "homepage": "https://powerups-ai.store/docs",
+  "repository": "https://github.com/RoeySmallTree/ai-power-apps",
+  "license": "MIT",
+  "keywords": [
+    "search",
+    "research",
+    "travel",
+    "weather",
+    "mcp",
+    "review"
+  ],
+  "mcpServers": "./.mcp.json",
+  "skills": "./skills/"
+}

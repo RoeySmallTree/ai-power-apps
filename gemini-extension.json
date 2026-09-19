@@ -1,0 +1,11 @@
+{
+  "name": "ai-power-apps",
+  "version": "1.0.0",
+  "description": "Live search across web, research, books, music, YouTube, weather, routes, hotels, flights, GitHub and social, plus Sharpen second-opinion reviews.",
+  "mcpServers": {
+    "ai-power-apps": {
+      "httpUrl": "https://api.powerups-ai.store/mcp"
+    }
+  },
+  "contextFileName": "GEMINI.md"
+}

@@ -1,0 +1,8 @@
+{
+  "mcpServers": {
+    "ai-power-apps": {
+      "type": "http",
+      "url": "https://api.powerups-ai.store/mcp"
+    }
+  }
+}
