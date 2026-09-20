@@ -13,5 +13,7 @@ The `ai-power-apps` MCP server gives you searches with stored state and a review
 Public stage names: Stage 1 = sharpen, Stage 2 = plus, Stage 3 = ultra, Stage 3+ = ultra2x. Stock means Sharpen is disabled. For an explicit request to use a stage, pass `stage: "stage1"`, `"stage2"`, `"stage3"` or `"stage3+"` to `sharpen`; otherwise omit it to use the saved setting. A per-call stage does not change that setting or enable disabled Sharpen.
 When an independent review would help a substantial answer, call `sharpen` with `task`, `context`, `approach`, your full `draft` and `caller_provider: "google"`. Read the returned review; keep what is right, fix what it catches, and write the final answer yourself.
 
+If `sharpen` returns `status: "pending"`, call `sharpen_status` with its `job_id` and `wait_seconds: 20` until completed or failed. Read the completed review from `result`. Polling retrieves the same review without starting or charging for another one. Never repeat `sharpen` while waiting. Identical inputs and stage reuse the job for 24 hours. Only an explicitly requested fresh review should use a new `request_id` UUID; reuse that UUID on transport retries. Stop on a failed job and report the failure.
+
 ## Costs
 Searches on free sources cost nothing; paid sources and Sharpen draw from the user's usage tokens. If a call returns `credits_exhausted`, tell the user and stop retrying exhausted calls. The allowance resets monthly; never initiate a purchase on the user's behalf.
