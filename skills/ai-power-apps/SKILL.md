@@ -3,7 +3,7 @@ name: ai-power-apps
 description: Use when a task needs live information (web, academic papers, scripture, classic texts, books, music, YouTube, weather, routes, hotels, flights, GitHub, social) or a second opinion on a drafted answer. Explains the discover → inspect → execute → follow_up flow and when to call sharpen.
 ---
 
-# AI Power Apps
+# AI Power Ups
 
 The `ai-power-apps` MCP server gives you searches with stored state and a review service.
 
@@ -14,6 +14,8 @@ The `ai-power-apps` MCP server gives you searches with stored state and a review
 4. Continue with `follow_up`: `{ search_id, action: "more" }` for the next page, `{ search_id, action: "update", params }` to change the query, `{ record_id, action: "details" }` (or another listed record action) for one item. Never re-send a whole result set; pass ids.
 
 ## Sharpen
+
+Public stage names: Stage 1 = sharpen, Stage 2 = plus, Stage 3 = ultra, Stage 3+ = ultra2x. Stock means Sharpen is disabled. For an explicit request to use a stage, pass `stage: "stage1"`, `"stage2"`, `"stage3"` or `"stage3+"` to `sharpen`; otherwise omit it to use the saved setting. A per-call stage does not change that setting or enable disabled Sharpen.
 When an independent review would help a substantial answer, call `sharpen` with `task`, `context`, `approach`, your full `draft` and `caller_provider: "anthropic"`. Read the returned review; keep what is right, fix what it catches, and write the final answer yourself.
 
 ## Costs
