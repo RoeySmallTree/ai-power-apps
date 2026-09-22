@@ -1,6 +1,6 @@
 # AI Power Ups
 
-![AI Power Ups](https://powerups-ai.store/brand/logo-512.png)
+![AI Power Ups](https://tmfesyrmnaihvpmfvdkb.supabase.co/storage/v1/object/public/brand-assets/ai-power-ups/logo-bf0cb1a910ca.png)
 
 Live data from the real world and a performance stage for the AI you already use — one connection, you choose what's on.
 
@@ -37,6 +37,8 @@ listing in Anthropic's public directory is pending.
 
 ## Gemini CLI
 
+Gemini CLI needs Gemini Code Assist Standard/Enterprise or a paid Gemini or Enterprise Agent Platform API key for model access. Personal Google sign-in is no longer supported; see [Google’s access notice](https://developers.googleblog.com/an-important-update-transitioning-gemini-cli-to-antigravity-cli/). This is separate from signing in to AI Power Ups, which does not require an AI Power Ups API key.
+
 ```sh
 gemini extensions install https://github.com/RoeySmallTree/ai-power-apps
 ```
@@ -55,7 +57,7 @@ month. Free sources use no tokens; paid sources and Sharpen consume the allowanc
 The assistant sends search parameters to AI Power Ups and its search providers.
 Sharpen sends the task and draft through OpenRouter to the reviewing model provider.
 Never include secrets or content you do not have permission to share. Disconnect
-at any time from the AI Power Ups dashboard's API keys page.
+at any time from [Connected apps](https://powerups-ai.store/app/connections) in your AI Power Ups dashboard. Browser sign-in does not require an API key.
 
 - [Documentation](https://powerups-ai.store/docs)
 - [Privacy](https://powerups-ai.store/privacy)
