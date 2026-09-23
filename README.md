@@ -65,5 +65,41 @@ at any time from [Connected apps](https://powerups-ai.store/app/connections) in 
 - [Plans](https://powerups-ai.store/pricing)
 - Support: support@powerups-ai.store
 
-This repository contains the plugin and extension manifests and instructions. The
+## REST client and samples
+
+Applications can use the [REST quickstart](https://powerups-ai.store/docs/quickstart) without an
+SDK. This source release also includes a [thin TypeScript client](sdk/typescript/README.md),
+a [TypeScript sample](samples/typescript/quickstart.ts) and a standard-library
+[Python sample](samples/python/quickstart.py). The TypeScript package is not published on npm.
+
+For the SDK source release, clone the immutable tag and build a local package:
+
+```sh
+git clone --branch v1.0.4 --depth 1 https://github.com/RoeySmallTree/ai-power-apps.git
+cd ai-power-apps
+npm ci --prefix sdk/typescript
+npm pack ./sdk/typescript --pack-destination /tmp --json
+```
+
+Read the `filename` from the JSON output (SDK 0.1.0 produces `ai-power-ups-api-0.1.0.tgz`).
+Install the absolute tarball path into your own app with `npm install`, or run the sample:
+
+```sh
+npm ci --prefix samples/typescript
+npm install --prefix samples/typescript --no-save --package-lock=false /tmp/ai-power-ups-api-0.1.0.tgz
+AIPA_API_KEY=your_server_side_key npm start --prefix samples/typescript
+```
+
+For Python 3.10 or later, no third-party package is needed:
+
+```sh
+AIPA_API_KEY=your_server_side_key python3 samples/python/quickstart.py
+```
+
+The samples call the live API sequentially using the free academic capability. Use a disposable
+Free-account key, keep it server-side, and revoke it afterwards. `AIPA_API_ORIGIN` can point to
+your own test endpoint. The SDK's [package checks](sdk/typescript/README.md#verify-the-distributable)
+run without API credentials. Repository tags and Claude/Gemini/SDK versions are independent.
+
+This repository contains the plugin and extension manifests, REST client, samples and instructions. The
 hosted service is operated by Small Tree. No server code or credentials are bundled.

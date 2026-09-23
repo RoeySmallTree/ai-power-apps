@@ -1,0 +1,51 @@
+{
+  "name": "@ai-power-ups/api",
+  "version": "0.1.0",
+  "description": "Thin typed client for the AI Power Ups REST API (https://powerups-ai.store/docs). Generated types from the public OpenAPI document plus execute, followUp and pages helpers.",
+  "license": "MIT",
+  "type": "module",
+  "main": "./dist/index.js",
+  "types": "./dist/index.d.ts",
+  "exports": {
+    ".": {
+      "types": "./dist/index.d.ts",
+      "default": "./dist/index.js"
+    }
+  },
+  "files": [
+    "dist",
+    "src",
+    "README.md"
+  ],
+  "scripts": {
+    "build": "tsc -p tsconfig.json && node scripts/copy-declarations.mjs",
+    "typecheck": "tsc -p tsconfig.test.json",
+    "generate": "openapi-typescript https://api.powerups-ai.store/v1/openapi.public.json -o src/generated/openapi.d.ts --default-non-nullable=false",
+    "test": "tsx --test test/*.test.ts",
+    "prepack": "npm run build",
+    "check:package": "node scripts/check-package.mjs"
+  },
+  "dependencies": {
+    "openapi-fetch": "^0.17.0"
+  },
+  "devDependencies": {
+    "openapi-typescript": "^7.13.0",
+    "typescript": "^5.9.0",
+    "tsx": "^4.20.0",
+    "@types/node": "^20.19.0"
+  },
+  "engines": {
+    "node": ">=20"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/RoeySmallTree/ai-power-apps",
+    "directory": "sdk/typescript"
+  },
+  "keywords": [
+    "ai-power-ups",
+    "search",
+    "openapi",
+    "typed-client"
+  ]
+}

@@ -1,0 +1,55 @@
+name: ci
+on:
+  pull_request:
+  push:
+    branches: [main]
+permissions:
+  contents: read
+concurrency:
+  group: ci-${{ github.ref }}
+  cancel-in-progress: true
+jobs:
+  sdk:
+    name: SDK and packed consumer (Node ${{ matrix.node }})
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    strategy:
+      matrix:
+        node: [20, 24]
+    steps:
+      - uses: actions/checkout@34e114876b0b11c390a56381ad16ebd13914f8d5 # v4
+      - uses: actions/setup-node@49933ea5288caeca8642d1e84afbd3f7d6820020 # v4
+        with:
+          node-version: ${{ matrix.node }}
+          cache: npm
+          cache-dependency-path: |
+            sdk/typescript/package-lock.json
+            samples/typescript/package-lock.json
+      - run: npm ci --prefix sdk/typescript
+      - run: npm run typecheck --prefix sdk/typescript
+      - run: npm test --prefix sdk/typescript
+      # Packs SDK, compiles an external consumer with both skipLibCheck values,
+      # installs that exact local tarball into the sample, typechecks and imports it.
+      # No API credentials or paid/provider calls.
+      - run: npm run check:package --prefix sdk/typescript
+  python:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@34e114876b0b11c390a56381ad16ebd13914f8d5 # v4
+      - run: python3 -m py_compile samples/python/quickstart.py
+  manifests:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@34e114876b0b11c390a56381ad16ebd13914f8d5 # v4
+      - run: |
+          python3 - <<'PY'
+          import json, re
+          from pathlib import Path
+          for path in [Path('.claude-plugin/plugin.json'), Path('gemini-extension.json'), Path('.cursor-plugin/plugin.json')]:
+              data = json.loads(path.read_text())
+              assert data['name'], path
+              assert re.fullmatch(r'\d+\.\d+\.\d+', data['version']), path
+          for path in [Path('.claude-plugin/marketplace.json'), Path('.cursor-plugin/marketplace.json'), Path('.mcp.json')]:
+              json.loads(path.read_text())
+          # Each component versions independently. Do not force Gemini to match Claude.
+          PY
