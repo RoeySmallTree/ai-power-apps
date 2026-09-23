@@ -15,7 +15,7 @@
     "powerups-ai",
     "sharpen review"
   ],
-  "logo": "https://tmfesyrmnaihvpmfvdkb.supabase.co/storage/v1/object/public/brand-assets/ai-power-ups/logo-bf0cb1a910ca.png",
+  "logo": "assets/logo.png",
   "mcpServers": "./.mcp.json",
   "skills": "./skills/"
 }
