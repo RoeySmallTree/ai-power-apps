@@ -49,7 +49,7 @@ jobs:
               data = json.loads(path.read_text())
               assert data['name'], path
               assert re.fullmatch(r'\d+\.\d+\.\d+', data['version']), path
-          for path in [Path('.claude-plugin/marketplace.json'), Path('.grok-plugin/plugin.json'), Path('.grok-plugin/marketplace.json'), Path('.mcp.json')]:
+          for path in [Path('.claude-plugin/marketplace.json'), Path('.cursor-plugin/marketplace.json'), Path('.mcp.json')]:
               json.loads(path.read_text())
           # Each component versions independently. Do not force Gemini to match Claude.
           PY
