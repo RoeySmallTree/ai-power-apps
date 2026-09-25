@@ -47,6 +47,28 @@ Restart Gemini CLI and authenticate the `ai-power-apps` MCP server with `/mcp au
 Complete sign-in and consent in your browser. This extension is eligible for the
 Gemini CLI extensions gallery; discoverability depends on its indexing.
 
+## Grok Build
+
+Install the plugin directly from this public repository:
+
+```sh
+grok plugin install https://github.com/RoeySmallTree/ai-power-apps --trust
+```
+
+The plugin is named `ai-powerups` and exposes the `ai-power-apps` MCP server.
+Sign in to AI Power Ups and allow the OAuth connection when Grok Build requests it.
+The server is `https://api.powerups-ai.store/mcp`; no API key is embedded in the plugin.
+The public xAI marketplace submission is pending; this command installs from our repository.
+
+For a server-only connection, use:
+
+```sh
+grok mcp add --transport http ai-power-apps https://api.powerups-ai.store/mcp
+```
+
+The [app icon](assets/logo.png) is the approved 512×512 PNG used by our Cursor/Grok Bot plugin.
+Grok Build's catalog schema does not document an icon field.
+
 ## Use
 
 Ask for academic papers, local weather, a book's details, or a second opinion on a
