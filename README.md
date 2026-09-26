@@ -66,7 +66,8 @@ For a server-only connection, use:
 grok mcp add --transport http ai-power-apps https://api.powerups-ai.store/mcp
 ```
 
-The [app icon](assets/logo.png) is the approved 512×512 PNG used by our Cursor/Grok Bot plugin.
+The Cursor/Grok Bot plugin uses the [app icon on its background plate](assets/logo-plated.png), a 512×512 PNG.
+The [transparent icon](assets/logo.png) is kept for hosts that draw their own background.
 Grok Build's catalog schema does not document an icon field.
 
 ## Use
@@ -85,7 +86,7 @@ at any time from [Connected apps](https://powerups-ai.store/app/connections) in 
 - [Privacy](https://powerups-ai.store/privacy)
 - [Terms](https://powerups-ai.store/terms)
 - [Plans](https://powerups-ai.store/pricing)
-- Support: support@powerups-ai.store
+- Support: roey@smalltree.io
 
 ## REST client and samples
 
@@ -97,7 +98,7 @@ a [TypeScript sample](samples/typescript/quickstart.ts) and a standard-library
 For the SDK source release, clone the immutable tag and build a local package:
 
 ```sh
-git clone --branch v1.0.4 --depth 1 https://github.com/RoeySmallTree/ai-power-apps.git
+git clone --branch v1.0.5 --depth 1 https://github.com/RoeySmallTree/ai-power-apps.git
 cd ai-power-apps
 npm ci --prefix sdk/typescript
 npm pack ./sdk/typescript --pack-destination /tmp --json

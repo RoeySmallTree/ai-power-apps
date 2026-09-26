@@ -2,17 +2,17 @@
   "name": "ai-powerups",
   "owner": {
     "name": "Small Tree",
-    "email": "support@powerups-ai.store"
+    "email": "roey@smalltree.io"
   },
   "metadata": {
-    "description": "Live data from the real world and a performance stage for the AI you already use — one connection, you choose what's on."
+    "description": "Upgrade the AI you already use. One connection gives it live data across travel, markets, research, reading, code, food, fitness and social — with real follow-ups and real links — plus a performance stage, Stock to Stage 3+, that puts more behind every answer. You choose what's on."
   },
   "plugins": [
     {
       "name": "ai-powerups",
       "source": "./",
       "description": "Upgrade the AI you already use. One connection gives it live data across travel, markets, research, reading, code, food, fitness and social — with real follow-ups and real links — plus a performance stage, Stock to Stage 3+, that puts more behind every answer. You choose what's on.",
-      "logo": "assets/logo.png"
+      "logo": "assets/logo-plated.png"
     }
   ]
 }
