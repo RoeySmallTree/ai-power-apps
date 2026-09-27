@@ -8,9 +8,11 @@ AI Powerups is an upgrade layer for the AI you already use. Connect it once and 
 
 Then choose its stage. From Stage 1 to Stage 3+, your AI answers with more behind it. Same model, beyond stock.
 
+And it keeps your work. Projects is a private file space your AIs share: save a plan to a project in one, and pick it up in another.
+
 You pick what's on. Your AI discovers the rest — what it can do, how to ask, where to go next. New powerups arrive on the same connection. Nothing to reinstall.
 
-Travel & places · Shopping · Markets & jobs · Real estate · News & trends · Reading & research · Music & video · Code & GitHub · Weather & environment · Food & fitness · Social · Stages — more on the way.
+Travel & places · Shopping · Markets & jobs · Real estate · News & trends · Reading & research · Music & video · Code & GitHub · Weather & environment · Food & fitness · Social · Projects · Stages — more on the way.
 
 ## Try asking
 
@@ -23,6 +25,8 @@ Travel & places · Shopping · Markets & jobs · Real estate · News & trends ·
 - Eight weeks to a 10k with an iffy knee: exercises, a plan, this weekend's weather, and dinners that become tomorrow's lunch.
 - Is the beach beginner-sized tomorrow morning, who teaches there, and can three of us get there without a car?
 - Before you answer this one, take it to Stage 3+.
+- Save this plan to a project — I'll pick it up in another chat.
+- We're back on the Lisbon offsite project. What's still open?
 
 ## Claude Code
 
@@ -74,8 +78,11 @@ Grok Build's catalog schema does not document an icon field.
 
 Ask for academic papers, local weather, a book's details, or a second opinion on a
 draft. The assistant discovers capabilities, inspects inputs, executes searches,
-and follows up using the returned IDs. Free accounts receive 500 usage tokens each
-month. Free sources use no tokens; paid sources and Sharpen consume the allowance.
+and follows up using the returned IDs. Ask it to save work to a project and any assistant
+you connect can continue it; project files are private to your account. Free accounts
+receive 500 usage tokens each month. Free sources use no tokens; paid sources and
+Sharpen consume the allowance. Projects uses no tokens and is limited only by your
+plan's storage allowance.
 
 The assistant sends search parameters to AI Power Ups and its search providers.
 Sharpen sends the task and draft through OpenRouter to the reviewing model provider.
@@ -98,7 +105,7 @@ a [TypeScript sample](samples/typescript/quickstart.ts) and a standard-library
 For the SDK source release, clone the immutable tag and build a local package:
 
 ```sh
-git clone --branch v1.0.5 --depth 1 https://github.com/RoeySmallTree/ai-power-apps.git
+git clone --branch v1.0.6 --depth 1 https://github.com/RoeySmallTree/ai-power-apps.git
 cd ai-power-apps
 npm ci --prefix sdk/typescript
 npm pack ./sdk/typescript --pack-destination /tmp --json
