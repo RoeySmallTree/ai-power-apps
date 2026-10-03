@@ -5,7 +5,7 @@ user-invocable: true
 disable-model-invocation: true
 ---
 
-# AI Power Ups (apu)
+# AI Power Ups
 
 The `ai-power-apps` MCP server gives you searches with stored state, a review service and the user's project files.
 

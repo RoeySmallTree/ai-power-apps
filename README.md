@@ -1,4 +1,4 @@
-# AI Power Ups (apu)
+# AI Power Ups
 
 ![AI Power Ups](https://tmfesyrmnaihvpmfvdkb.supabase.co/storage/v1/object/public/brand-assets/ai-power-ups/logo-bf0cb1a910ca.png)
 

@@ -3,7 +3,7 @@ name: ai-power-apps
 description: Use AI Power Ups (apu) when requested by name or when a task needs live information across travel, shopping, markets, jobs, real estate, news, reading, research, music, video, code, weather, food, fitness or social, a performance stage for a drafted answer, or saving and continuing work in the user's projects. Discover the current capabilities and retrieve pending reviews with sharpen_status.
 ---
 
-# AI Power Ups (apu)
+# AI Power Ups
 
 The `ai-power-apps` MCP server gives you searches with stored state, a review service and the user's project files.
 

@@ -73,7 +73,7 @@ def check_plugins(schema_dir):
         assert re.fullmatch(r"\d+\.\d+\.\d+", manifest["version"]), host
         assert manifest["mcpServers"] == "./.mcp.json", f"{host}: MCP config changed"
         assert manifest["skills"] == "./skills/", f"{host}: both skill entrypoints must load"
-        assert DISPLAY_NAME in manifest["description"], host
+        assert not manifest["description"].startswith(DISPLAY_NAME), host  # apu is a shortcut, not the brand
         assert "apu" in manifest["keywords"], host
         if host != ".grok-plugin":
             assert manifest["displayName"] == DISPLAY_NAME, host
@@ -85,8 +85,8 @@ def check_plugins(schema_dir):
         assert len(catalog["plugins"]) == 1, host
         entry = catalog["plugins"][0]
         assert entry["name"] == plugin_id and entry["source"] == "./", host
-        assert DISPLAY_NAME in entry["description"], host
-        assert DISPLAY_NAME in catalog["metadata"]["description"], host
+        assert not entry["description"].startswith(DISPLAY_NAME), host
+        assert not catalog["metadata"]["description"].startswith(DISPLAY_NAME), host
 
     assert read_json(".mcp.json") == {
         "mcpServers": {"ai-power-apps": {"type": "http", "url": MCP_URL}}
@@ -97,7 +97,7 @@ def check_plugins(schema_dir):
     assert gemini["mcpServers"] == {"ai-power-apps": {"httpUrl": MCP_URL}}
     assert gemini["contextFileName"] == "GEMINI.md"
     assert "displayName" not in gemini, "Gemini has no separate displayName field"
-    assert DISPLAY_NAME in gemini["description"]
+    assert not gemini["description"].startswith(DISPLAY_NAME)
     assert (ROOT / gemini["contextFileName"]).is_file()
 
     for kind in ("plugin", "marketplace"):
