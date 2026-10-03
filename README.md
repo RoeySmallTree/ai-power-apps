@@ -2,15 +2,13 @@
 
 ![AI Power Ups](https://tmfesyrmnaihvpmfvdkb.supabase.co/storage/v1/object/public/brand-assets/ai-power-ups/logo-bf0cb1a910ca.png)
 
-Live data from the real world and a performance stage for the AI you already use — one connection, you choose what's on.
+Real answers for the AI you already use: live flights, hotels, prices, papers, weather and more, with real links, and sharper answers when it matters. One connection, you choose what's on.
 
-Call it **apu** for short. AI Power Ups, AI Powerups, Powerups and apu all refer to the same integration.
+Connect it once and your AI can reach the live world — flights, hotels and routes; markets and companies; papers, patents, scriptures and classics; repos, recipes, weather, what people are saying — and keep working through it: more options, a closer look, the next page, a booking link.
 
-AI Powerups is an upgrade layer for the AI you already use. Connect it once and your AI can reach the live world — flights, hotels and routes; markets and companies; papers, patents, scriptures and classics; repos, recipes, weather, what people are saying — and keep working through it: more options, a closer look, the next page, a booking link.
+Sync keeps your AIs on the same page. Save a plan to a project in one AI and pick it up in another, so you don't re-explain your work each time. Projects is the private file space behind it.
 
-Then choose its stage. From Stage 1 to Stage 3+, your AI answers with more behind it. Same model, beyond stock.
-
-And it keeps your work. Projects is a private file space your AIs share: save a plan to a project in one, and pick it up in another.
+When an answer matters, raise its stage. From Stage 1 to Stage 3+, your AI reviews and strengthens its answer with more behind it. Same model, beyond stock.
 
 You pick what's on. Your AI discovers the rest — what it can do, how to ask, where to go next. New powerups arrive on the same connection. Nothing to reinstall.
 
@@ -39,6 +37,8 @@ After installing or updating the plugin and restarting your host, use `/apu` wit
 /apu Save this plan to my Lisbon offsite project.
 ```
 
+Call it **apu** for short. AI Power Ups, AI Powerups, Powerups and apu all refer to the same integration.
+
 You can also ask “Use apu to find recent papers on urban heat islands” in ordinary chat.
 Invoking the shortcut without a task asks what you want help with. It uses your existing
 connection and enabled features, keeps your saved stage, and grants no extra permissions.
@@ -50,9 +50,11 @@ connection and enabled features, keeps your saved stage, and grants no extra per
 | Grok Build | `/apu` when unambiguous | `/ai-powerups:apu` |
 | Gemini CLI | `/apu` | `/ai-power-apps.apu` is the documented collision fallback; see the version note below. |
 
-Claude and Cursor support the display name **AI Power Ups (apu)**. Grok Build and
-Gemini keep their existing plugin/extension names and include the shortcut in descriptions;
-Grok Build ignores the catalog's `displayName`. Hosts decide how much of that metadata to show.
+Claude and Cursor show the display name **AI Power Ups (apu)**. Grok Build and Gemini keep their
+existing plugin/extension names and do not carry the shortcut in their descriptions: Grok Build
+ignores the catalog's `displayName`, and Gemini has no separate extension display name. There the
+shortcut is the `/apu` command itself (Gemini's command help names it); Grok Build's is the
+`/ai-powerups:apu` skill. Hosts decide how much metadata to show.
 The installation IDs, `ai-power-apps` MCP server and existing `ai-power-apps` skill remain unchanged.
 A server-only MCP connection provides tools, but does not install slash commands.
 
