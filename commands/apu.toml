@@ -1,0 +1,10 @@
+description = "Use AI Power Ups (apu) for live information, answer reviews and project files."
+prompt = """
+Use AI Power Ups (apu) for the user's request below, following this extension's GEMINI.md instructions.
+apu is a shortcut for the existing ai-power-apps MCP server. Use the tools actually exposed by that server; do not invent apu tools.
+The shortcut does not change the saved stage, enable disabled features, or authorize unrelated actions.
+If the request below is empty, ask what the user wants help with before calling tools.
+
+User request:
+{{args}}
+"""
