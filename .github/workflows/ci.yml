@@ -41,15 +41,8 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@34e114876b0b11c390a56381ad16ebd13914f8d5 # v4
-      - run: |
-          python3 - <<'PY'
-          import json, re
-          from pathlib import Path
-          for path in [Path('.claude-plugin/plugin.json'), Path('gemini-extension.json'), Path('.cursor-plugin/plugin.json'), Path('.grok-plugin/plugin.json')]:
-              data = json.loads(path.read_text())
-              assert data['name'], path
-              assert re.fullmatch(r'\d+\.\d+\.\d+', data['version']), path
-          for path in [Path('.claude-plugin/marketplace.json'), Path('.cursor-plugin/marketplace.json'), Path('.grok-plugin/marketplace.json'), Path('.mcp.json')]:
-              json.loads(path.read_text())
-          # Each component versions independently. Do not force Gemini to match Claude.
-          PY
+      - run: python3 -m venv "${{ runner.temp }}/plugin-checks"
+      - run: '"${{ runner.temp }}/plugin-checks/bin/python" -m pip install -r scripts/requirements-plugin-checks.txt'
+      # Components version independently; keep install IDs, MCP config and aliases compatible.
+      # Cursor schemas are pinned to an official upstream commit. No service/paid calls.
+      - run: '"${{ runner.temp }}/plugin-checks/bin/python" scripts/check-plugins.py'

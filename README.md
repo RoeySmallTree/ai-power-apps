@@ -2,13 +2,13 @@
 
 ![AI Power Ups](https://tmfesyrmnaihvpmfvdkb.supabase.co/storage/v1/object/public/brand-assets/ai-power-ups/logo-bf0cb1a910ca.png)
 
-Live data from the real world and a performance stage for the AI you already use — one connection, you choose what's on.
+Real answers for the AI you already use: live flights, hotels, prices, papers, weather and more, with real links, and sharper answers when it matters. One connection, you choose what's on.
 
-AI Powerups is an upgrade layer for the AI you already use. Connect it once and your AI can reach the live world — flights, hotels and routes; markets and companies; papers, patents, scriptures and classics; repos, recipes, weather, what people are saying — and keep working through it: more options, a closer look, the next page, a booking link.
+Connect it once and your AI can reach the live world — flights, hotels and routes; markets and companies; papers, patents, scriptures and classics; repos, recipes, weather, what people are saying — and keep working through it: more options, a closer look, the next page, a booking link.
 
-Then choose its stage. From Stage 1 to Stage 3+, your AI answers with more behind it. Same model, beyond stock.
+Sync keeps your AIs on the same page. Save a plan to a project in one AI and pick it up in another, so you don't re-explain your work each time. Projects is the private file space behind it.
 
-And it keeps your work. Projects is a private file space your AIs share: save a plan to a project in one, and pick it up in another.
+When an answer matters, raise its stage. From Stage 1 to Stage 3+, your AI reviews and strengthens its answer with more behind it. Same model, beyond stock.
 
 You pick what's on. Your AI discovers the rest — what it can do, how to ask, where to go next. New powerups arrive on the same connection. Nothing to reinstall.
 
@@ -28,6 +28,47 @@ Travel & places · Shopping · Markets & jobs · Real estate · News & trends ·
 - Save this plan to a project — I'll pick it up in another chat.
 - We're back on the Lisbon offsite project. What's still open?
 
+## Use the apu shortcut
+
+After installing or updating the plugin and restarting your host, use `/apu` with a task:
+
+```text
+/apu Find recent papers on urban heat islands.
+/apu Save this plan to my Lisbon offsite project.
+```
+
+Call it **apu** for short. AI Power Ups, AI Powerups, Powerups and apu all refer to the same integration.
+
+You can also ask “Use apu to find recent papers on urban heat islands” in ordinary chat.
+Invoking the shortcut without a task asks what you want help with. It uses your existing
+connection and enabled features, keeps your saved stage, and grants no extra permissions.
+
+| Host | Shortcut | If the short name is unavailable or already used |
+| --- | --- | --- |
+| Claude Code | `/apu` when unambiguous | `/ai-power-apps:apu` |
+| Cursor | `/apu` | Select this plugin's `apu` skill in the slash-command menu. |
+| Grok Build | `/apu` when unambiguous | `/ai-powerups:apu` |
+| Gemini CLI | `/apu` | `/ai-power-apps.apu` is the documented collision fallback; see the version note below. |
+
+Claude and Cursor show the display name **AI Power Ups (apu)**. Grok Build and Gemini keep their
+existing plugin/extension names and do not carry the shortcut in their descriptions: Grok Build
+ignores the catalog's `displayName`, and Gemini has no separate extension display name. There the
+shortcut is the `/apu` command itself (Gemini's command help names it); Grok Build's is the
+`/ai-powerups:apu` skill. Hosts decide how much metadata to show.
+The installation IDs, `ai-power-apps` MCP server and existing `ai-power-apps` skill remain unchanged.
+A server-only MCP connection provides tools, but does not install slash commands.
+
+Gemini version note: the [extension reference](https://geminicli.com/docs/extensions/reference/#conflict-resolution)
+documents a dot separator, while the [current upstream resolver](https://github.com/google-gemini/gemini-cli/blob/fb972b2f87fe7d5b06d37eac711490162d98de2c/packages/cli/src/services/SlashCommandResolver.ts#L167)
+uses a colon for extension commands (`/ai-power-apps:apu`) and may add a numeric suffix for
+further collisions. Check `/help` for the name your installed version exposes. The shortcut is
+implemented as a prompt-only [custom command](commands/apu.toml); it executes no shell interpolation.
+Claude's [skill naming rules](https://code.claude.com/docs/en/skills#how-a-skill-gets-its-command-name)
+and Cursor's [skill invocation rules](https://cursor.com/docs/skills) describe their host behavior.
+
+The shortcut files are part of this source change; the immutable `v1.0.6` SDK source release
+below predates them. Existing installations need a plugin update containing these files.
+
 ## Claude Code
 
 ```sh
@@ -38,6 +79,14 @@ claude plugin install ai-power-apps@ai-power-apps
 Restart Claude Code, open `/mcp`, select `ai-power-apps` and authenticate. Sign in to
 AI Power Ups in your browser and allow the connection. This is our own marketplace;
 listing in Anthropic's public directory is pending.
+
+## Cursor
+
+In Customize, choose **From GitHub Repository**, import
+`https://github.com/RoeySmallTree/ai-power-apps`, and install the `ai-powerups` plugin
+shown as **AI Power Ups (apu)**. Authenticate its `ai-power-apps` MCP server, then select
+`apu` from the slash-command menu. The [Cursor plugin guide](https://cursor.com/docs/skills#installing-skills-from-a-repository)
+describes importing repository marketplaces.
 
 ## Gemini CLI
 
@@ -133,3 +182,18 @@ run without API credentials. Repository tags and Claude/Gemini/SDK versions are 
 
 This repository contains the plugin and extension manifests, REST client, samples and instructions. The
 hosted service is operated by Small Tree. No server code or credentials are bundled.
+
+## Check plugin compatibility locally
+
+```sh
+python3 -m venv /tmp/ai-power-apps-checks
+/tmp/ai-power-apps-checks/bin/python -m pip install -r scripts/requirements-plugin-checks.txt
+/tmp/ai-power-apps-checks/bin/python scripts/check-plugins.py
+```
+
+The checker validates the Cursor manifests against the official schemas at a pinned upstream
+commit, preserves install IDs and MCP configuration, parses the Gemini command, and verifies
+that `skills/apu/SKILL.md` has the same body as the canonical `skills/ai-power-apps/SKILL.md`.
+Edit both skill bodies together; keep their different invocation metadata. It makes no service
+calls. For offline schema checks, pass `--cursor-schema-dir` pointing to the two pinned schema
+files (`plugin.schema.json` and `marketplace.schema.json`).
